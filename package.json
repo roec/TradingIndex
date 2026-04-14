@@ -1,0 +1,15 @@
+{
+  "name": "china-stock-trading-system",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev -w frontend",
+    "dev:backend": "npm run dev -w backend",
+    "build": "npm run build -w packages/shared-types && npm run build -w packages/indicator-engine && npm run build -w packages/strategy-engine && npm run build -w backend && npm run build -w frontend"
+  }
+}

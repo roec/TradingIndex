@@ -1,0 +1,14 @@
+{
+  "navigation": {"dashboard":"Dashboard","market":"Market","stockDetail":"Stock Detail","watchlist":"Watchlist","strategies":"Strategies","backtest":"Backtest","paperTrading":"Paper Trading","risk":"Risk Control","settings":"Settings","login":"Login"},
+  "dashboard": {"title":"Market Overview","gainers":"Top Gainers","losers":"Top Losers","hotSignals":"Hottest Watchlist Signals","alerts":"Latest Strategy Alerts"},
+  "watchlist": {"title":"Watchlist","add":"Add","remove":"Remove"},
+  "market": {"title":"Market Data Center"},
+  "charts": {"candlestick":"Candlestick","volume":"Volume","timeframe":"Timeframe"},
+  "indicators": {"title":"Indicators"},
+  "strategies": {"title":"Strategies"},
+  "backtest": {"title":"Backtesting","run":"Run Backtest"},
+  "paperTrading": {"title":"Paper Trading","buy":"Buy","sell":"Sell"},
+  "settings": {"title":"Settings","language":"Language","theme":"Theme","refresh":"Refresh Speed"},
+  "riskControl": {"title":"Risk Control","stopLoss":"Stop Loss","takeProfit":"Take Profit"},
+  "header": {"langZh":"中文","langEn":"English"}
+}
