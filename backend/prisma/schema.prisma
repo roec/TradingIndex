@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  username      String          @unique
+  passwordHash  String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  watchlist     WatchlistItem[]
+  setting       Setting?
+}
+
+model WatchlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  symbol    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, symbol])
+}
+
+model Candle {
+  id        String   @id @default(cuid())
+  symbol    String
+  timeframe String
+  ts        DateTime
+  open      Float
+  high      Float
+  low       Float
+  close     Float
+  volume    Float
+  createdAt DateTime @default(now())
+
+  @@index([symbol, timeframe, ts])
+}
+
+model IndicatorSnapshot {
+  id        String   @id @default(cuid())
+  symbol    String
+  timeframe String
+  name      String
+  value     Json
+  ts        DateTime
+  createdAt DateTime @default(now())
+}
+
+model Signal {
+  id         String   @id @default(cuid())
+  symbol     String
+  timeframe  String
+  signalType String
+  action     String
+  score      Float
+  reasons    Json
+  ts         DateTime
+  createdAt  DateTime @default(now())
+}
+
+model StrategyConfig {
+  id         String   @id @default(cuid())
+  strategyId String
+  name       String
+  config     Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model BacktestJob {
+  id         String          @id @default(cuid())
+  symbol     String
+  strategyId String
+  timeframe  String
+  status     String
+  result     String?
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  trades     BacktestTrade[]
+}
+
+model BacktestTrade {
+  id          String   @id @default(cuid())
+  backtestJobId String
+  symbol      String
+  side        String
+  quantity    Float
+  price       Float
+  pnl         Float
+  createdAt   DateTime @default(now())
+  backtestJob BacktestJob @relation(fields: [backtestJobId], references: [id])
+}
+
+model PaperAccount {
+  id         String   @id @default(cuid())
+  cash       Float    @default(1000000)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model PaperOrder {
+  id         String   @id @default(cuid())
+  symbol     String
+  side       String
+  quantity   Float
+  price      Float
+  status     String
+  createdAt  DateTime @default(now())
+}
+
+model Position {
+  id         String   @id @default(cuid())
+  symbol     String   @unique
+  quantity   Float
+  avgPrice   Float
+  updatedAt  DateTime @updatedAt
+}
+
+model RiskConfig {
+  id                    String   @id @default(cuid())
+  stopLoss              Float
+  takeProfit            Float
+  maxPositionSize       Float
+  maxDailyLoss          Float
+  signalConflictControl Boolean
+  exposureLimit         Float
+  updatedAt             DateTime @updatedAt
+}
+
+model Setting {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  language        String
+  theme           String
+  mockRefreshSpeed Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id])
+}
