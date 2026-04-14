@@ -1,0 +1,14 @@
+{
+  "navigation": {"dashboard":"总览","market":"市场","stockDetail":"个股详情","watchlist":"自选","strategies":"策略中心","backtest":"回测","paperTrading":"模拟交易","risk":"风控","settings":"设置","login":"登录"},
+  "dashboard": {"title":"市场总览","gainers":"涨幅榜","losers":"跌幅榜","hotSignals":"热门信号","alerts":"最新策略提醒"},
+  "watchlist": {"title":"自选列表","add":"添加","remove":"移除"},
+  "market": {"title":"行情中心"},
+  "charts": {"candlestick":"K线图","volume":"成交量","timeframe":"周期"},
+  "indicators": {"title":"指标"},
+  "strategies": {"title":"策略"},
+  "backtest": {"title":"策略回测","run":"运行回测"},
+  "paperTrading": {"title":"模拟交易","buy":"买入","sell":"卖出"},
+  "settings": {"title":"系统设置","language":"语言","theme":"主题","refresh":"刷新速度"},
+  "riskControl": {"title":"风控","stopLoss":"止损","takeProfit":"止盈"},
+  "header": {"langZh":"中文","langEn":"英文"}
+}
